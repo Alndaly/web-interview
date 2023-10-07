@@ -164,8 +164,8 @@ Boolean(new Boolean(false)) // true
 - false 
 - +0 
 - -0
--  NaN
--  ""
+- NaN
+- ""
 
 除了上面几种会被转化成`false`，其他都换被转化成`true`
 

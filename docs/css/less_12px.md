@@ -26,8 +26,8 @@ Chrome 中文版浏览器会默认设定页面的最小字号是12px，英文版
 常见的解决方案有：
 
 - zoom
--  -webkit-transform:scale()
--  -webkit-text-size-adjust:none
+- -webkit-transform:scale()
+- -webkit-text-size-adjust:none
 
 ### Zoom
 

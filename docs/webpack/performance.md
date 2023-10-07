@@ -54,9 +54,9 @@ module.exports = {
 
 属性介绍如下：
 
--  extractComments：默认值为true，表示会将注释抽取到一个单独的文件中，开发阶段，我们可设置为 false ，不保留注释
--  parallel：使用多进程并发运行提高构建的速度，默认值是true，并发运行的默认数量： os.cpus().length - 1
--  terserOptions：设置我们的terser相关的配置：
+- extractComments：默认值为true，表示会将注释抽取到一个单独的文件中，开发阶段，我们可设置为 false ，不保留注释
+- parallel：使用多进程并发运行提高构建的速度，默认值是true，并发运行的默认数量： os.cpus().length - 1
+- terserOptions：设置我们的terser相关的配置：
   - compress：设置压缩相关的选项，mangle：设置丑化相关的选项，可以直接设置为true
   - mangle：设置丑化相关的选项，可以直接设置为true
   - toplevel：底层变量是否进行转换
@@ -310,7 +310,7 @@ module.exports = {
 - Chunks，对同步代码还是异步代码进行处理
 - minSize： 拆分包的大小, 至少为minSize，如何包的大小不超过minSize，这个包不会拆分
 - maxSize： 将大于maxSize的包，拆分为不小于minSize的包
--  minChunks：被引入的次数，默认是1
+- minChunks：被引入的次数，默认是1
 
 
 

@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 
-
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   sitemap: {
@@ -20,7 +19,7 @@ export default defineConfig({
   title: "web前端面试",
   description: "web前端面试,vue面试题,react面试题,js面试题,大厂面试题,阿里面试题,京东面试题",
   markdown: {
-    lineNumbers: true
+    // lineNumbers: true
   },
   themeConfig: {
     nav: [

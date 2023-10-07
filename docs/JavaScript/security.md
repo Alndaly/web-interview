@@ -1,6 +1,6 @@
 # 面试官：web常见的攻击方式有哪些？如何防御？
 
- ![](https://static.vue-js.com/d0892930-8d1d-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/d0892930-8d1d-11eb-ab90-d9ae814b240d.png)
 
 ## 一、是什么
 Web攻击（WebAttack）是针对用户上网行为或网站服务器等设备进行攻击的行为
@@ -17,7 +17,6 @@ Web应用程序的安全性是任何基于Web业务的重要组成部分
 - XSS (Cross Site Scripting) 跨站脚本攻击
 - CSRF（Cross-site request forgery）跨站请求伪造
 - SQL注入攻击
-
 
 ## 二、XSS
 
@@ -59,8 +58,6 @@ XSS，跨站脚本攻击，允许攻击者将恶意代码植入到提供给其�
 - 反射型
 - DOM 型
 
-
-
 ### 存储型
 
 存储型 XSS 的攻击步骤：
@@ -71,8 +68,6 @@ XSS，跨站脚本攻击，允许攻击者将恶意代码植入到提供给其�
 4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作
 
 这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等
-
-
 
 ### 反射型 XSS
 
@@ -91,8 +86,6 @@ XSS，跨站脚本攻击，允许攻击者将恶意代码植入到提供给其�
 
 POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见
 
-
-
 ### DOM 型 XSS
 
 DOM 型 XSS 的攻击步骤：
@@ -103,8 +96,6 @@ DOM 型 XSS 的攻击步骤：
 4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作
 
 DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞
-
-
 
 ### XSS的预防
 
@@ -133,8 +124,6 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 - 当 `5 < 7` 通过 Ajax 返回，然后赋值给 JavaScript 的变量时，前端得到的字符串就是转义后的字符。这个内容不能直接用于 Vue 等模板的展示，也不能直接用于内容长度计算。不能用于标题、alert 等
 
-
-
 可以看到，过滤并非可靠的，下面就要通过防止浏览器执行恶意代码：
 
 在使用 `.innerHTML`、`.outerHTML`、`document.write()` 时要特别小心，不要把不可信的数据作为 HTML 插到页面上，而应尽量使用 `.textContent`、`.setAttribute()` 等
@@ -143,9 +132,9 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 DOM 中的内联事件监听器，如 `location`、`onclick`、`onerror`、`onload`、`onmouseover` 等，`<a>` 标签的 `href` 属性，JavaScript 的 `eval()`、`setTimeout()`、`setInterval()` 等，都能把字符串作为代码运行。如果不可信的数据拼接到字符串中传递给这些 API，很容易产生安全隐患，请务必避免
 
-```js
+```vue
 <!-- 链接内包含恶意代码 -->
-< a href=" ">1</ a>
+<a href=" ">1</a>
 
 <script>
 // setTimeout()/setInterval() 中调用恶意代码
@@ -157,11 +146,8 @@ location.href = 'UNTRUSTED'
 
 // eval() 中调用恶意代码
 eval("UNTRUSTED")
+</script>
 ```
-
-
-
-
 
 ## 三、CSRF
 
@@ -198,12 +184,10 @@ CSRF（Cross-site request forgery）跨站请求伪造：攻击者诱导受害�
 访问该页面后，表单会自动提交，相当于模拟用户完成了一次POST操作
 
 ```html
-< a href="http://test.com/csrf/withdraw.php?amount=1000&for=hacker" taget="_blank">
+<a href="http://test.com/csrf/withdraw.php?amount=1000&for=hacker" taget="_blank">
     重磅消息！！
 <a/>
 ```
-
-
 
 ### CSRF的特点
 
@@ -211,8 +195,6 @@ CSRF（Cross-site request forgery）跨站请求伪造：攻击者诱导受害�
 - 攻击利用受害者在被攻击网站的登录凭证，冒充受害者提交操作；而不是直接窃取数据
 - 整个过程攻击者并不能获取到受害者的登录凭证，仅仅是“冒用”
 - 跨站请求可以用各种方式：图片URL、超链接、CORS、Form提交等等。部分请求方式可以直接嵌入在第三方论坛、文章中，难以进行追踪
-
-
 
 ### CSRF的预防  
 
@@ -226,7 +208,6 @@ CSRF通常从第三方网站发起，被攻击的网站无法防止攻击发生�
 - 提交时要求附加本域才能获取的信息
   - CSRF Token
   - 双重Cookie验证
-
 
 
 这里主要讲讲`token`这种形式，流程如下：
@@ -251,9 +232,8 @@ Sql 注入攻击，是通过将恶意的 `Sql `查询或添加语句插入到应
 流程如下所示：
 
 - 找出SQL漏洞的注入点
-
 - 判断数据库的类型以及版本
--  猜解用户名和密码
+- 猜解用户名和密码
 - 利用工具查找Web后台管理入口
 - 入侵和破坏
 
@@ -264,7 +244,6 @@ Sql 注入攻击，是通过将恶意的 `Sql `查询或添加语句插入到应
 - 对访问数据库的Web应用程序采用Web应用防火墙
 
 上述只是列举了常见的`web`攻击方式，实际开发过程中还会遇到很多安全问题，对于这些问题， 切记不可忽视
-
 
 ## 参考文献
 

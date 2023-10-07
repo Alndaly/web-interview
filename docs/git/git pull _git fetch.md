@@ -19,8 +19,8 @@
 
 在我们本地的`git`文件中对应也存储了`git`本地仓库分支的`commit ID `和 跟踪的远程分支的`commit ID`，对应文件如下：
 
--  .git/refs/head/[本地分支]
--  .git/refs/remotes/[正在跟踪的分支]
+- .git/refs/head/[本地分支]
+- .git/refs/remotes/[正在跟踪的分支]
 
 使用 `git fetch`更新代码，本地的库中`master`的`commitID`不变
 

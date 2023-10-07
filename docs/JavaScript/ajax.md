@@ -1,6 +1,6 @@
 # 面试官：ajax原理是什么？如何实现？
 
- ![](https://static.vue-js.com/a35a2950-7b2a-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/a35a2950-7b2a-11eb-ab90-d9ae814b240d.png)
 
 ## 一、是什么
 
@@ -63,17 +63,10 @@ xhr.open(method, url, [async][, user][, password])
 参数说明：
 
 - `method`：表示当前的请求方式，常见的有`GET`、`POST`
-
 - `url`：服务端地址
-
 - `async`：布尔值，表示是否异步执行操作，默认为`true`
-
--  `user`: 可选的用户名用于认证用途；默认为`null
-
-
+- `user`: 可选的用户名用于认证用途；默认为`null
 - `password`: 可选的密码用于认证用途，默认为`null
-
-
 
 ### 给服务端发送数据
 
@@ -89,8 +82,6 @@ xhr.send([body])
 
 - 将请求数据添加到`open()`方法中的`url`地址中
 - 发送请求数据中的`send()`方法中参数设置为`null`
-
-
 
 ### 绑定onreadystatechange事件
 
@@ -120,10 +111,6 @@ request.onreadystatechange = function(e){
 request.open('POST','http://xxxx')
 request.send()
 ```
-
-
-
-
 
 ## 三、封装
 

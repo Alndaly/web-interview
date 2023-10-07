@@ -17,5 +17,8 @@
   "homepage": "https://github.com/febobo/web-interview#readme",
   "devDependencies": {
     "vitepress": "^1.0.0-rc.20"
+  },
+  "dependencies": {
+    "shiki": "^0.14.4"
   }
 }

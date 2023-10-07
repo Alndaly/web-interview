@@ -247,7 +247,7 @@ if (normalizationType === ALWAYS_NORMALIZE) {
 
 `normalizeChildren`方法调用场景分为下面两种：
 
--  `render` 函数是用户手写的
+- `render` 函数是用户手写的
 - 编译 `slot`、`v-for` 的时候会产生嵌套数组
 
 无论是`simpleNormalizeChildren`还是`normalizeChildren`都是对`children`进行规范（使`children` 变成了一个类型为 `VNode` 的 `Array`），这里就不展开说了
