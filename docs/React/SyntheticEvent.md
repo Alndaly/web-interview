@@ -62,7 +62,6 @@ const button = <button onClick={handleClick}>按钮命名</button>
 ```jsx
 import  React  from 'react';
 class App extends React.Component{
-
   constructor(props) {
     super(props);
     this.parentRef = React.createRef();
@@ -118,22 +117,21 @@ React 事件：父元素事件监听！
 
 对应过程如图所示：
 
- ![](https://static.vue-js.com/08e22ff0-d870-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/08e22ff0-d870-11eb-ab90-d9ae814b240d.png)
 
 所以想要阻止不同时间段的冒泡行为，对应使用不同的方法，对应如下：
 
-- 阻止合成事件间的冒泡，用e.stopPropagation()
-- 阻止合成事件与最外层 document 上的事件间的冒泡，用e.nativeEvent.stopImmediatePropagation()
-
-- 阻止合成事件与除最外层document上的原生事件上的冒泡，通过判断e.target来避免
+- 阻止合成事件间的冒泡，用`e.stopPropagation()`
+- 阻止合成事件与最外层document上的事件间的冒泡，用`e.nativeEvent.stopImmediatePropagation()`
+- 阻止合成事件与除最外层document上的原生事件上的冒泡，通过判断`e.target`来避免
 
 ```js
 document.body.addEventListener('click', e => {   
     if (e.target && e.target.matches('div.code')) {  
         return;    
     }    
-    this.setState({   active: false,    });   }); 
-}
+    this.setState({  active: false  });
+}) 
 ```
 
 
@@ -142,7 +140,7 @@ document.body.addEventListener('click', e => {
 `React`事件机制总结如下：
 
 - React 上注册的事件最终会绑定在document这个 DOM 上，而不是 React 组件对应的 DOM(减少内存开销就是因为所有的事件都绑定在 document 上，其他节点没有绑定事件)
-- React 自身实现了一套事件冒泡机制，所以这也就是为什么我们 event.stopPropagation()无效的原因。
+- React 自身实现了一套事件冒泡机制，所以这也就是为什么我们`event.stopPropagation()`无效的原因。
 - React 通过队列的形式，从触发的组件向父组件回溯，然后调用他们 JSX 中定义的 callback
 - React 有一套自己的合成事件 SyntheticEvent
 

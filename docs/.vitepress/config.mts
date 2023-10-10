@@ -16,7 +16,7 @@ export default defineConfig({
     ],
   ],
   lastUpdated: true,
-  title: "web前端面试",
+  title: "前端面试",
   description: "web前端面试,vue面试题,react面试题,js面试题,大厂面试题,阿里面试题,京东面试题",
   markdown: {
     // lineNumbers: true
@@ -364,7 +364,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: '/https://github.com/Alndaly/web-interview' }
+      { icon: 'github', link: 'https://github.com/Alndaly/web-interview' }
     ]
   }
 })
