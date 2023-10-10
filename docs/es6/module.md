@@ -1,8 +1,6 @@
 # 面试官：你是怎么理解ES6中Module的？使用场景？
 
- ![](https://static.vue-js.com/b6d19be0-5adb-11eb-ab90-d9ae814b240d.png)
-
-
+![](https://static.vue-js.com/b6d19be0-5adb-11eb-ab90-d9ae814b240d.png)
 
 ## 一、介绍
 
@@ -11,7 +9,6 @@
 两个基本的特征：外部特征和内部特征
 
 - 外部特征是指模块跟外部环境联系的接口（即其他模块或程序调用该模块的方式，包括有输入输出参数、引用的全局变量）和模块的功能
-
 - 内部特征是指模块的内部环境具有的特点（即该模块的局部数据和程序代码）
 
 ### 为什么需要模块化
@@ -33,7 +30,6 @@
 - CommonJs (典型代表：node.js早期)
 - AMD (典型代表：require.js)
 - CMD (典型代表：sea.js)
-
 
 ### AMD
 
@@ -57,8 +53,6 @@ require(["jquery","underscore"],function($,_){
 });
 ```
 
-
-
 ### CommonJs
 
 `CommonJS` 是一套 `Javascript` 模块规范，用于服务端
@@ -77,7 +71,6 @@ const { foo,bar } = require('./a.js')
 - 模块是同步加载的，即只有加载完成，才能执行后面的操作
 - 模块在首次执行后就会缓存，再次加载只返回缓存结果，如果想要再次执行，可清除缓存
 - `require`返回的值是被输出的值的拷贝，模块内部的变化也不会影响这个值
-
 
 既然存在了`AMD`以及`CommonJs`机制，`ES6`的`Module`又有什么不一样？
 
@@ -105,9 +98,7 @@ import { stat, exists, readFile } from 'fs';
 
 上述代码，只加载3个方法，其他方法不加载，即 `ES6` 可以在编译时就完成模块加载
 
-由于编译加载，使得静态分析成为可能。包括现在流行的`typeScript`也是依靠静态分析实现功能
-
-
+由于编译加载，使得静态分析成为可能。包括现在流行的`TypeScript`也是依靠静态分析实现功能
 
 ## 二、使用
 
@@ -118,19 +109,20 @@ import { stat, exists, readFile } from 'fs';
 - `export`：用于规定模块的对外接口
 - `import`：用于输入其他模块提供的功能
 
-
-
 ### export
 
 一个模块就是一个独立的文件，该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用`export`关键字输出该变量
 
-```javascript
+```js
 // profile.js
 export var firstName = 'Michael';
 export var lastName = 'Jackson';
 export var year = 1958;
+```
 
-或 
+或
+
+```js
 // 建议使用下面写法，这样能瞬间确定输出了哪些变量
 var firstName = 'Michael';
 var lastName = 'Jackson';
@@ -159,8 +151,6 @@ export {
   v2 as streamLatestVersion
 };
 ```
-
-
 
 ### import
 

@@ -1,8 +1,6 @@
 # 面试官：说说React的事件机制？
 
- ![](https://static.vue-js.com/f054f080-d86f-11eb-ab90-d9ae814b240d.png)
-
-
+![](https://static.vue-js.com/f054f080-d86f-11eb-ab90-d9ae814b240d.png)
 
 ## 一、是什么
 
@@ -10,11 +8,11 @@
 
 在`React`中这套事件机制被称之为合成事件
 
-#### 合成事件（SyntheticEvent）
+### 合成事件（SyntheticEvent）
 
-合成事件是 `React `模拟原生 `DOM `事件所有能力的一个事件对象，即浏览器原生事件的跨浏览器包装器
+合成事件是`React`模拟原生`DOM`事件所有能力的一个事件对象，即浏览器原生事件的跨浏览器包装器
 
-根据 `W3C `规范来定义合成事件，兼容所有浏览器，拥有与浏览器原生事件相同的接口，例如：
+根据`W3C`规范来定义合成事件，兼容所有浏览器，拥有与浏览器原生事件相同的接口，例如：
 
 ```jsx
 const button = <button onClick={handleClick}>按钮</button>
@@ -49,16 +47,17 @@ const button = <button onClick={handleClick}>按钮命名</button>
 const button = <button onClick={handleClick}>按钮命名</button>
 ```
 
+:::tip
 虽然`onclick`看似绑定到`DOM`元素上，但实际并不会把事件代理函数直接绑定到真实的节点上，而是把所有的事件绑定到结构的最外层，使用一个统一的事件去监听
 
 这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当组件挂载或卸载时，只是在这个统一的事件监听器上插入或删除一些对象
 
 当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。这样做简化了事件处理和回收机制，效率也有很大提升
-
+:::
 
 ## 二、执行顺序
 
-关于`React `合成事件与原生事件执行顺序，可以看看下面一个例子：
+关于`React`合成事件与原生事件执行顺序，可以看看下面一个例子：
 
 ```jsx
 import  React  from 'react';

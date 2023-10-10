@@ -39,7 +39,9 @@ jack.printAge(); //输出 : 20
 
 ![](https://static.vue-js.com/6ab40190-d71c-11eb-85f6-6fac77c0c9b3.png)
 
-报错的原因是 子类是没有自己的 `this` 对象的，它只能继承父类的 `this` 对象，然后对其进行加工
+:::tip
+报错的原因是子类是没有自己的 `this` 对象的，它只能继承父类的 `this` 对象，然后对其进行加工
+:::
 
 而 `super()` 就是将父类中的 `this` 对象继承给子类的，没有 `super()` 子类就得不到 `this` 对象
 
@@ -98,7 +100,7 @@ class Button extends React.Component {
 ```jsx
 class Button extends React.Component {
   constructor(props) {
-    super(props); // 没传入 props
+    super(props); // 传入 props
     console.log(props);      //  {}
     console.log(this.props); //  {}
     // ...

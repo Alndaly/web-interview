@@ -1,6 +1,6 @@
 # 面试官：说说 React中的setState执行机制
 
- ![](https://static.vue-js.com/3acb8ca0-d825-11eb-85f6-6fac77c0c9b3.png)
+![](https://static.vue-js.com/3acb8ca0-d825-11eb-85f6-6fac77c0c9b3.png)
 
 ## 一、是什么
 
@@ -72,8 +72,6 @@ Component.prototype.setState = function(partialState, callback) {
 
 从上面可以看到`setState`第一个参数可以是一个对象，或者是一个函数，而第二个参数是一个回调函数，用于可以实时的获取到更新之后的数据
 
-
-
 ## 二、更新类型
 
 在使用`setState`更新数据的时候，`setState`的更新类型分成：
@@ -108,8 +106,6 @@ changeText() {
 }
 ```
 
-
-
 ### 同步更新
 
 同样先给出一个在`setTimeout`中更新的例子：
@@ -141,14 +137,10 @@ componentDidMount() {
 }
 ```
 
-
-
 ### 小结
 
 - 在组件生命周期或React合成事件中，setState是异步
 - 在setTimeout或者原生dom事件中，setState是同步
-
-
 
 ### 三、批量更新
 
@@ -175,7 +167,7 @@ handleClick = () => {
 
 点击按钮触发事件，打印的都是 1，页面显示 `count` 的值为 2
 
-对同一个值进行多次 `setState `， `setState` 的批量更新策略会对其进行覆盖，取最后一次的执行结果
+对同一个值进行多次 `setState`， `setState` 的批量更新策略会对其进行覆盖，取最后一次的执行结果
 
 上述的例子，实际等价于如下：
 
@@ -204,8 +196,6 @@ onClick = () => {
 ```
 
 而在`setTimeout`或者原生`dom`事件中，由于是同步的操作，所以并不会进行覆盖现象
-
-
 
 ## 参考文献
 
