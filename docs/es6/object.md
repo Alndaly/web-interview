@@ -2,8 +2,6 @@
 
 ![](https://static.vue-js.com/4da4dd40-5427-11eb-ab90-d9ae814b240d.png)
 
-
-
 ## 一、属性的简写
 
 ES6中，当对象键名与对应值名相等的时候，可以进行简写
@@ -46,8 +44,8 @@ getPoint()
 // {x:1, y:10}
 ```
 
-注意：简写的对象方法不能用作构造函数，否则会报错
-
+:::warning
+简写的对象方法不能用作构造函数，否则会报错
 ```js
 const obj = {
   f() {
@@ -57,7 +55,7 @@ const obj = {
 
 new obj.f() // 报错
 ```
-
+:::
 
 
 ## 二、属性名表达式
@@ -102,8 +100,8 @@ const foo = 'bar';
 const baz = { [foo]: 'abc'};
 ```
 
+:::tip
 注意，属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串`[object Object]`
-
 ```js
 const keyA = {a: 1};
 const keyB = {b: 2};
@@ -115,8 +113,7 @@ const myObject = {
 
 myObject // Object {[object Object]: "valueB"}
 ```
-
-
+:::
 
 ## 三、super关键字
 
@@ -151,33 +148,30 @@ y // 2
 z // { a: 3, b: 4 }
 ```
 
-注意：解构赋值必须是最后一个参数，否则会报错
+:::warning
+解构赋值必须是最后一个参数，否则会报错
+:::
 
+:::tip
 解构赋值是浅拷贝
-
 ```js
 let obj = { a: { b: 1 } };
 let { ...x } = obj;
 obj.a.b = 2; // 修改obj里面a属性中键值
 x.a.b // 2，影响到了结构出来x的值
 ```
+:::
 
 对象的扩展运算符等同于使用`Object.assign()`方法
-
-
 
 ## 五、属性的遍历
 
 ES6 一共有 5 种方法可以遍历对象的属性。
 
 - for...in：循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）
-
 - Object.keys(obj)：返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名
-
 - Object.getOwnPropertyNames(obj)：回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名
-
 - Object.getOwnPropertySymbols(obj)：返回一个数组，包含对象自身的所有 Symbol 属性的键名
-
 - Reflect.ownKeys(obj)：返回一个数组，包含对象自身的（不含继承的）所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举
 
 上述遍历，都遵守同样的属性遍历的次序规则：
@@ -191,10 +185,6 @@ Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
 // ['2', '10', 'b', 'a', Symbol()]
 ```
 
-
-
-
-
 ## 六、对象新增的方法
 
 关于对象新增的方法，分别有以下：
@@ -206,11 +196,13 @@ Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
 - Object.keys()，Object.values()，Object.entries()
 - Object.fromEntries()
 
-
-
 ### Object.is()
 
 严格判断两个值是否相等，与严格比较运算符（===）的行为基本一致，不同之处只有两个：一是`+0`不等于`-0`，二是`NaN`等于自身
+
+:::tip
+如果是这么看的话，那么在web端或许是用`Object.is()`来判断两者是否相等更加合适一些。`
+:::
 
 ```js
 +0 === -0 //true
@@ -219,8 +211,6 @@ NaN === NaN // false
 Object.is(+0, -0) // false
 Object.is(NaN, NaN) // true
 ```
-
-
 
 ### Object.assign()
 
@@ -238,9 +228,7 @@ Object.assign(target, source1, source2);
 target // {a:1, b:2, c:3}
 ```
 
-注意：`Object.assign()`方法是浅拷贝，遇到同名属性会进行替换
-
-
+注意：`Object.assign()`方法是浅拷贝，**遇到同名属性会进行替换**
 
 ### Object.getOwnPropertyDescriptors()
 
@@ -262,7 +250,8 @@ Object.getOwnPropertyDescriptors(obj)
 //    { get: [Function: get bar],
 //      set: undefined,
 //      enumerable: true,
-//      configurable: true } }
+//      configurable: true } 
+// }
 ```
 
 

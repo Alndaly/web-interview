@@ -4,7 +4,7 @@
 
 ## 一、扩展运算符的应用
 
-ES6通过扩展元素符`...`，好比 `rest` 参数的逆运算，将一个数组转为用逗号分隔的参数序列
+ES6通过扩展元素符`...`，好比`rest`参数的逆运算，将一个数组转为用逗号分隔的参数序列
 
 ```js
 console.log(...[1, 2, 3])
@@ -123,8 +123,6 @@ const obj = {a: 1, b: 2};
 let arr = [...obj]; // TypeError: Cannot spread non-iterable object
 ```
 
-
-
 ## 二、构造函数新增的方法
 
 关于构造函数，数组新增的方法有如下：
@@ -134,7 +132,7 @@ let arr = [...obj]; // TypeError: Cannot spread non-iterable object
 
 ### Array.from()
 
-将两类对象转为真正的数组：类似数组的对象和可遍历`（iterable）`的对象（包括 `ES6` 新增的数据结构 `Set` 和 `Map`）
+将两类对象转为真正的数组：类似数组的对象和可遍历`(iterable)`的对象（包括`ES6`新增的数据结构`Set`和`Map`）
 
 ```js
 let arrayLike = {
@@ -153,8 +151,6 @@ Array.from([1, 2, 3], (x) => x * x)
 // [1, 4, 9]
 ```
 
-
-
 ### Array.of()
 
 用于将一组值，转换为数组
@@ -165,7 +161,9 @@ Array.of(3, 11, 8) // [3,11,8]
 
 没有参数的时候，返回一个空数组
 
+:::warning
 当参数只有一个的时候，实际上是指定数组的长度
+:::
 
 参数个数不少于 2 个时，`Array()`才会返回由参数组成的新数组
 
@@ -174,8 +172,6 @@ Array() // []
 Array(3) // [, , ,]
 Array(3, 11, 8) // [3, 11, 8]
 ```
-
-
 
 ### 三、实例对象新增的方法
 
@@ -203,11 +199,9 @@ Array(3, 11, 8) // [3, 11, 8]
 // [4, 5, 3, 4, 5] 
 ```
 
-
-
 ### find()、findIndex()
 
-`find()`用于找出第一个符合条件的数组成员
+`find()`用于找出**第一个**符合条件的数组成员
 
 参数是一个回调函数，接受三个参数依次为当前的值、当前的位置和原数组
 
@@ -235,8 +229,6 @@ let person = {name: 'John', age: 20};
 [10, 12, 26, 15].find(f, person);    // 26
 ```
 
-
-
 ### fill()
 
 使用给定值，填充一个数组
@@ -258,14 +250,12 @@ new Array(3).fill(7)
 
 注意，如果填充的类型为对象，则是浅拷贝
 
-
-
 ### entries()，keys()，values()
 
 `keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历
 
 ```js
-or (let index of ['a', 'b'].keys()) {
+for (let index of ['a', 'b'].keys()) {
   console.log(index);
 }
 // 0
@@ -282,8 +272,6 @@ for (let [index, elem] of ['a', 'b'].entries()) {
 }
 // 0 "a"
 ```
-
-
 
 ### includes()
 
@@ -303,8 +291,6 @@ for (let [index, elem] of ['a', 'b'].entries()) {
 [1, 2, 3].includes(3, 3);  // false
 [1, 2, 3].includes(3, -1); // true
 ```
-
-
 
 ### flat()，flatMap()
 
@@ -335,19 +321,13 @@ for (let [index, elem] of ['a', 'b'].entries()) {
 
 `flatMap()`方法还可以有第二个参数，用来绑定遍历函数里面的`this`
 
-
-
 ### 四、数组的空位
 
-数组的空位指，数组的某一个位置没有任何值
+数组的空位指数组的某一个位置没有任何值
 
 ES6 则是明确将空位转为`undefined`，包括`Array.from`、扩展运算符、`copyWithin()`、`fill()`、`entries()`、`keys()`、`values()`、`find()`和`findIndex()`
 
 建议大家在日常书写中，避免出现空位
-
-
-
-
 
 ### 五、排序稳定性
 
@@ -371,9 +351,6 @@ arr.sort(stableSorting)
 ```
 
 排序结果中，`straw`在`spork`的前面，跟原始顺序一致
-
-
-
 
 ## 参考文献
 

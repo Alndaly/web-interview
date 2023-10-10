@@ -2,11 +2,9 @@
 
 ![](https://static.vue-js.com/f033b160-5811-11eb-85f6-6fac77c0c9b3.png)
 
-
-
 ## 一、介绍
 
-`Promise `，译为承诺，是异步编程的一种解决方案，比传统的解决方案（回调函数）更加合理和更加强大
+`Promise`，译为承诺，是异步编程的一种解决方案，比传统的解决方案（回调函数）更加合理和更加强大
 
 在以往我们如果处理多层异步操作，我们往往会像下面那样编写我们的代码
 
@@ -42,8 +40,6 @@ doSomething().then(function(result) {
 - 链式操作减低了编码难度
 - 代码可读性明显增强
 
-
-
 下面我们正式来认识`promise`：
 
 ### 状态
@@ -59,15 +55,11 @@ doSomething().then(function(result) {
 - 对象的状态不受外界影响，只有异步操作的结果，可以决定当前是哪一种状态
 - 一旦状态改变（从`pending`变为`fulfilled`和从`pending`变为`rejected`），就不会再变，任何时候都可以得到这个结果
 
-
-
 ### 流程
 
 认真阅读下图，我们能够轻松了解`promise`整个流程
 
- ![](https://static.vue-js.com/1b02ae90-58a9-11eb-85f6-6fac77c0c9b3.png)
-
-
+![](https://static.vue-js.com/1b02ae90-58a9-11eb-85f6-6fac77c0c9b3.png)
 
 ## 二、用法
 
@@ -82,8 +74,6 @@ const promise = new Promise(function(resolve, reject) {});
 - `resolve`函数的作用是，将`Promise`对象的状态从“未完成”变为“成功”
 - `reject`函数的作用是，将`Promise`对象的状态从“未完成”变为“失败”
 
-
-
 ### 实例方法
 
 `Promise`构建出来的实例存在以下方法：
@@ -91,8 +81,6 @@ const promise = new Promise(function(resolve, reject) {});
 - then()
 - catch()
 - finally()
-
-
 
 #### then()
 
@@ -108,8 +96,6 @@ getJSON("/posts.json").then(function(json) {
 });
 ```
 
-
-
 #### catch
 
 `catch()`方法是`.then(null, rejection)`或`.then(undefined, rejection)`的别名，用于指定发生错误时的回调函数
@@ -123,7 +109,7 @@ getJSON('/posts.json').then(function(posts) {
 });
 ```
 
-`Promise `对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止
+`Promise`对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止
 
 ```javascript
 getJSON('/post/1.json').then(function(post) {
@@ -137,7 +123,7 @@ getJSON('/post/1.json').then(function(post) {
 
 一般来说，使用`catch`方法代替`then()`第二个参数
 
-`Promise `对象抛出的错误不会传递到外层代码，即不会有任何反应
+`Promise`对象抛出的错误不会传递到外层代码，即不会有任何反应
 
 ```js
 const someAsyncThing = function() {
@@ -152,8 +138,6 @@ const someAsyncThing = function() {
 
 `catch()`方法之中，还能再抛出错误，通过后面`catch`方法捕获到
 
-
-
 #### finally()
 
 `finally()`方法用于指定不管 Promise 对象最后状态如何，都会执行的操作
@@ -165,8 +149,6 @@ promise
 .finally(() => {···});
 ```
 
-
-
 ### 构造函数方法
 
 `Promise`构造函数存在以下方法：
@@ -177,8 +159,6 @@ promise
 - resolve()
 - reject()
 - try()
-
-
 
 ### all()
 
@@ -262,8 +242,6 @@ p
 .catch(console.error);
 ```
 
-
-
 ### allSettled()
 
 `Promise.allSettled()`方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例
@@ -281,8 +259,6 @@ await Promise.allSettled(promises);
 removeLoadingIndicator();
 ```
 
-
-
 #### resolve()
 
 将现有对象转为 `Promise `对象
@@ -299,8 +275,6 @@ new Promise(resolve => resolve('foo'))
 - 参数是一个`thenable`对象，`promise.resolve`会将这个对象转为 `Promise `对象，然后就立即执行`thenable`对象的`then()`方法
 - 参数不是具有`then()`方法的对象，或根本就不是对象，`Promise.resolve()`会返回一个新的 Promise 对象，状态为`resolved`
 - 没有参数时，直接返回一个`resolved`状态的 Promise 对象
-
-
 
 #### reject()
 
@@ -326,8 +300,6 @@ Promise.reject('出错了')
 })
 // true
 ```
-
-
 
 ## 三、使用场景
 
