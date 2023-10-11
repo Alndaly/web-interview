@@ -1,8 +1,6 @@
 # 面试官：React中组件之间如何通信？
 
- ![](https://static.vue-js.com/767a2800-dc9f-11eb-85f6-6fac77c0c9b3.png)
-
-
+![](https://static.vue-js.com/767a2800-dc9f-11eb-85f6-6fac77c0c9b3.png)
 
 ## 一、是什么
 
@@ -15,10 +13,9 @@
 
 相比`vue`，`React`的组件更加灵活和多样，按照不同的方式可以分成很多类型的组件
 
-而通信指的是发送者通过某种媒体以某种格式来传递信息到收信者以达到某个目的，广义上，任何信息的交通都是通信
+而通信指的是发送者通过某种媒体以某种格式来传递信息到收信者以达到某个目的，广义上，任何信息的交换都是通信
 
 组件间通信即指组件通过某种方式来传递信息以达到某个目的
-
 
 ## 二、如何通信
 
@@ -29,7 +26,6 @@
 - 兄弟组件之间的通信
 - 父组件向后代组件传递
 - 非关系组件传递
-
 
 ### 父组件向子组件传递
 
@@ -48,7 +44,6 @@ function EmailInput(props) {
 
 const element = <EmailInput email="123124132@163.com" />;
 ```
-
 
 ### 子组件向父组件传递
 
@@ -103,8 +98,6 @@ class Child extends Component {
 }
 ```
 
-
-
 ### 兄弟组件之间的通信
 
 如果是兄弟组件之间的传递，则父组件作为中间层来实现数据的互通，通过使用父组件传递
@@ -133,8 +126,6 @@ class Parent extends React.Component {
 }
 ```
 
-
-
 ### 父组件向后代组件传递
 
 父组件向后代组件传递数据是一件最普通的事情，就像全局数据一样
@@ -156,7 +147,11 @@ class Parent extends React.Component {
 </PriceContext.Provider>
 ```
 
-如果想要获取`Provider`传递的数据，可以通过`Consumer`组件或者或者使用`contextType`属性接收，对应分别如下：
+如果想要获取`Provider`传递的数据，可以通过使用`contextType`属性或者`Consumer`组件接收，对应分别如下：
+
+:::tip
+当下更加推荐`contextType`属性这种，写起来更简便且易于理解。
+:::
 
 ```jsx
 class MyClass extends React.Component {
@@ -179,16 +174,13 @@ class MyClass extends React.Component {
 </PriceContext.Consumer>
 ````
 
-
-
 ### 非关系组件传递
 
 如果组件之间关系类型比较复杂的情况，建议将数据进行一个全局资源管理，从而实现通信，例如`redux`。关于`redux`的使用后续再详细介绍
 
-
 ## 三、总结
 
-由于`React`是单向数据流，主要思想是组件不会改变接收的数据，只会监听数据的变化，当数据发生变化时它们会使用接收到的新值，而不是去修改已有的值
+由于`React`是单向数据流，主要思想是**组件不会改变接收的数据，只会监听数据的变化**。当数据发生变化时它们会使用接收到的新值，而不是去修改已有的值
 
 因此，可以看到通信过程中，数据的存储位置都是存放在上级位置中
 

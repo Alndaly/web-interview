@@ -24,8 +24,6 @@ class ShowAlert extends React.Component {
 
 上述的代码看似没有问题，但是当将处理函数输出代码换成`console.log(this)`的时候，点击按钮，则会发现控制台输出`undefined`
 
-
-
 ## 二、如何绑定
 
 为了解决上面正确输出`this`的问题，常见的绑定方式有如下：
@@ -34,8 +32,6 @@ class ShowAlert extends React.Component {
 - render方法中使用箭头函数
 - constructor中bind
 - 定义阶段使用箭头函数绑定
-
-
 
 ### render方法中使用bind
 
@@ -54,13 +50,21 @@ class App extends React.Component {
 }
 ```
 
-这种方式在组件每次`render`渲染的时候，都会重新进行`bind`的操作，影响性能
-
-
+:::tip
+这种方式在组件每次`render`渲染的时候，都会重新进行`bind`的操作，影响性能。
+:::
 
 ### render方法中使用箭头函数
 
-通过`ES6`的上下文来将`this`的指向绑定给当前组件，同样再每一次`render`的时候都会生成新的方法，影响性能
+:::info
+箭头函数没有自身的this，默认会是上级上下文的this。
+:::
+
+通过`ES6`的上下文来将`this`的指向绑定给当前组件
+
+:::tip
+这种方式同样在每一次`render`的时候都会生成新的方法，影响性能。
+:::
 
 ```jsx
 class App extends React.Component {
@@ -74,8 +78,6 @@ class App extends React.Component {
   }
 }
 ```
-
-
 
 ## constructor中bind
 
@@ -98,9 +100,11 @@ class App extends React.Component {
 }
 ```
 
-
-
 ### 定义阶段使用箭头函数绑定
+
+:::tip
+常用方案
+:::
 
 跟上述方式三一样，能够避免在`render`操作中重复绑定，实现也非常的简单，如下：
 
@@ -120,8 +124,6 @@ class App extends React.Component {
 }
 ```
 
-
-
 ## 三、区别
 
 上述四种方法的方式，区别主要如下：
@@ -130,7 +132,6 @@ class App extends React.Component {
 - 性能方面：方式一和方式二在每次组件render的时候都会生成新的方法实例，性能问题欠缺。若该函数作为属性值传给子组件的时候，都会导致额外的渲染。而方式三、方式四只会生成一个方法实例
 
 综合上述，方式四是最优的事件绑定方式
-
 
 ## 参考文献
 
