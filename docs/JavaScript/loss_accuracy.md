@@ -1,6 +1,6 @@
 # 面试官：说说 Javascript 数字精度丢失的问题，如何解决？
 
- ![](https://static.vue-js.com/09646a10-86f4-11eb-85f6-6fac77c0c9b3.png)
+![](https://static.vue-js.com/09646a10-86f4-11eb-85f6-6fac77c0c9b3.png)
 
 ## 一、场景复现
 
@@ -9,6 +9,7 @@
 ```js
 0.1 + 0.2 === 0.3 // false
 ```
+
 为什么是`false`呢?
 
 先看下面这个比喻
@@ -57,7 +58,9 @@
 
 27.5 转换为二进制11011.1
 
-11011.1转换为科学记数法 ![[公式]](https://www.zhihu.com/equation?tex=1.10111%2A2%5E4)
+11011.1转换为科学记数法
+
+![[公式]](https://www.zhihu.com/equation?tex=1.10111%2A2%5E4)
 
 符号位为1(正数)，指数位为4+，1023+4，即1027
 

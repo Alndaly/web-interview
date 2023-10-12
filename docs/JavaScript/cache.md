@@ -1,6 +1,6 @@
 # 面试官：Javascript本地存储的方式有哪些？区别及应用场景？
 
- ![](https://static.vue-js.com/68dccf20-849f-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/68dccf20-849f-11eb-ab90-d9ae814b240d.png)
 
 ## 一、方式
 
@@ -11,14 +11,13 @@
 - localStorage
 - indexedDB
 
-
 ### cookie
 
-`Cookie`，类型为「小型文本文件」，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。是为了解决 `HTTP `无状态导致的问题
+`Cookie`，类型为「小型文本文件」，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。是为了解决 `HTTP` 无状态导致的问题
 
-作为一段一般不超过 4KB 的小型文本数据，它由一个名称（Name）、一个值（Value）和其它几个用于控制 `cookie `有效期、安全性、使用范围的可选属性组成
+作为一段一般不超过 4KB 的小型文本数据，它由一个名称（Name）、一个值（Value）和其它几个用于控制 `cookie` 有效期、安全性、使用范围的可选属性组成
 
-但是`cookie`在每次请求中都会被发送，如果不使用 `HTTPS `并对其加密，其保存的信息很容易被窃取，导致安全风险。举个例子，在一些使用 `cookie `保持登录态的网站上，如果 `cookie `被窃取，他人很容易利用你的 `cookie `来假扮成你登录网站
+但是`cookie`在每次请求中都会被发送，如果不使用 `HTTPS` 并对其加密，其保存的信息很容易被窃取，导致安全风险。举个例子，在一些使用 `cookie` 保持登录态的网站上，如果 `cookie` 被窃取，他人很容易利用你的 `cookie` 来假扮成你登录网站
 
 关于`cookie`常用的属性如下：
 
@@ -41,7 +40,7 @@ Max-Age=604800
 Path=/docs   # /docs/Web/ 下的资源会带 Cookie 首部
 ```
 
-- 标记为 `Secure `的 `Cookie `只应通过被`HTTPS`协议加密过的请求发送给服务端
+- 标记为 `Secure` 的 `Cookie` 只应通过被`HTTPS`协议加密过的请求发送给服务端
 
 通过上述，我们可以看到`cookie`又开始的作用并不是为了缓存而设计出来，只是借用了`cookie`的特性实现缓存
 
@@ -109,7 +108,7 @@ localStorage.clear()
 
 `localStorage` 也不是完美的，它有两个缺点：
 
-- 无法像` Cookie `一样设置过期时间
+- 无法像 `Cookie` 一样设置过期时间
 - 只能存入字符串，无法直接存对象
 
 ```js
@@ -121,15 +120,15 @@ console.log(localStorage.getItem('key')); // '[object, Object]'
 
 ### sessionStorage
 
-`sessionStorage `和 `localStorage `使用方法基本一致，唯一不同的是生命周期，一旦页面（会话）关闭，`sessionStorage` 将会删除数据
+`sessionStorage` 和 `localStorage` 使用方法基本一致，唯一不同的是生命周期，一旦页面（会话）关闭，`sessionStorage` 将会删除数据
 
 
 
 ### 扩展的前端存储方式
 
-`indexedDB `是一种低级API，用于客户端存储大量结构化数据(包括, 文件/ blobs)。该API使用索引来实现对该数据的高性能搜索
+`indexedDB` 是一种低级API，用于客户端存储大量结构化数据(包括, 文件/ blobs)。该API使用索引来实现对该数据的高性能搜索
 
-虽然 `Web Storage `对于存储较少量的数据很有用，但对于存储更大量的结构化数据来说，这种方法不太有用。`IndexedDB`提供了一个解决方案
+虽然 `Web Storage` 对于存储较少量的数据很有用，但对于存储更大量的结构化数据来说，这种方法不太有用。`IndexedDB`提供了一个解决方案
 
 #### 优点：
 
@@ -161,13 +160,11 @@ console.log(localStorage.getItem('key')); // '[object, Object]'
 
 关于`cookie`、`sessionStorage`、`localStorage`三者的区别主要如下：
 
-- 存储大小：` cookie`数据大小不能超过`4k`，`sessionStorage`和`localStorage `虽然也有存储大小的限制，但比`cookie`大得多，可以达到5M或更大
+- 存储大小：`cookie` 数据大小不能超过 `4k`，`sessionStorage` 和 `localStorage` 虽然也有存储大小的限制，但比`cookie`大得多，可以达到5M或更大
 
-- 有效时间：` localStorage   `存储持久数据，浏览器关闭后数据不丢失除非主动删除数据； `sessionStorage  `数据在当前浏览器窗口关闭后自动删除；` cookie `设置的`cookie`过期时间之前一直有效，即使窗口或浏览器关闭
+- 有效时间：` localStorage   `存储持久数据，浏览器关闭后数据不丢失除非主动删除数据； `sessionStorage` 数据在当前浏览器窗口关闭后自动删除；` cookie `设置的`cookie`过期时间之前一直有效，即使窗口或浏览器关闭
 
 - 数据与服务器之间的交互方式，`  cookie`的数据会自动的传递到服务器，服务器端也可以写`cookie`到客户端； `sessionStorage`和`localStorage`不会自动把数据发给服务器，仅在本地保存
-
-
 
 ## 三、应用场景
 
@@ -177,8 +174,6 @@ console.log(localStorage.getItem('key')); // '[object, Object]'
 - 适合长期保存在本地的数据（令牌），推荐使用`localStorage`
 - 敏感账号一次性登录，推荐使用`sessionStorage`
 - 存储大量数据的情况、在线文档（富文本编辑器）保存编辑历史的情况，推荐使用`indexedDB`
-
-
 
 ## 相关连接
 

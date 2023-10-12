@@ -6,11 +6,11 @@
 
 我们先从单向绑定切入单向绑定非常简单，就是把`Model`绑定到`View`，当我们用`JavaScript`代码更新`Model`时，`View`就会自动更新双向绑定就很容易联想到了，在单向绑定的基础上，用户更新了`View`，`Model`的数据也自动被更新了，这种情况就是双向绑定举个栗子
 
- ![](https://static.vue-js.com/d65738d0-3ac9-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/d65738d0-3ac9-11eb-ab90-d9ae814b240d.png)
 
 当用户填写表单时，`View`的状态就被更新了，如果此时可以自动更新`Model`的状态，那就相当于我们把`Model`和`View`做了双向绑定关系图如下
 
- ![](https://static.vue-js.com/dcc1d4a0-3ac9-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/dcc1d4a0-3ac9-11eb-ab90-d9ae814b240d.png)
 
 ## 二、双向绑定的原理是什么
 
@@ -32,21 +32,21 @@
 当然，它还有两个主要部分组成
 
 - 监听器（Observer）：对所有数据的属性进行监听
-- 解析器（Compiler）：对每个元素节点的指令进行扫描跟解析,根据指令模板替换数据,以及绑定相应的更新函数
+- 解析器（Compiler）：对每个元素节点的指令进行扫描跟解析，根据指令模板替换数据，以及绑定相应的更新函数
 
 ### 三、实现双向绑定
 
 我们还是以`Vue`为例，先来看看`Vue`中的双向绑定流程是什么的
 
-1.  `new Vue()`首先执行初始化，对`data`执行响应化处理，这个过程发生`Observe`中
-2.  同时对模板执行编译，找到其中动态绑定的数据，从`data`中获取并初始化视图，这个过程发生在`Compile`中
-3.  同时定义⼀个更新函数和`Watcher`，将来对应数据变化时`Watcher`会调用更新函数
-4.  由于`data`的某个`key`在⼀个视图中可能出现多次，所以每个`key`都需要⼀个管家`Dep`来管理多个`Watcher`
-5.  将来data中数据⼀旦发生变化，会首先找到对应的`Dep`，通知所有`Watcher`执行更新函数
+1. `new Vue()`首先执行初始化，对`data`执行响应化处理，这个过程发生在`Observe`中
+2. 同时对模板执行编译，找到其中动态绑定的数据，从`data`中获取并初始化视图，这个过程发生在`Compile`中
+3. 同时定义⼀个更新函数和`Watcher`，将来对应数据变化时`Watcher`会调用更新函数
+4. 由于`data`的某个`key`在⼀个视图中可能出现多次，所以每个`key`都需要⼀个管家`Dep`来管理多个`Watcher`
+5. 将来data中数据⼀旦发生变化，会首先找到对应的`Dep`，通知所有`Watcher`执行更新函数
 
 流程图如下：
 
- ![](https://static.vue-js.com/e5369850-3ac9-11eb-85f6-6fac77c0c9b3.png)
+![](https://static.vue-js.com/e5369850-3ac9-11eb-85f6-6fac77c0c9b3.png)
 
 ### 实现
 
@@ -219,12 +219,3 @@ function defineReactive(obj, key, val) {
 
 - https://www.liaoxuefeng.com/wiki/1022910821149312/1109527162256416
 - https://juejin.cn/post/6844903942254510087#heading-9
-
-  
-
-面试官VUE系列总进度：3／33
-
-[面试官：说说你对vue的理解\?](http://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484101&idx=1&sn=83b0983f0fca7d7c556e4cb0bff8c9b8&chksm=fc10c093cb674985ef3bd2966f66fc28c5eb70b0037e4be1af4bf54fb6fa9571985abd31d52f&scene=21#wechat_redirect)  
-[面试官：说说你对SPA（单页应用）的理解\?](http://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484119&idx=1&sn=d171b28a00d42549d279498944a98519&chksm=fc10c081cb6749976814aaeda6a6433db418223cec57edda7e15b9e5a0ca69ad549655639c61&scene=21#wechat_redirect)
-
-![](https://static.vue-js.com/821b87b0-3ac6-11eb-ab90-d9ae814b240d.png)

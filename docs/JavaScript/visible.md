@@ -1,30 +1,27 @@
 # 面试官：如何判断一个元素是否在可视区域中？
 
- ![](https://static.vue-js.com/d848c790-8a05-11eb-85f6-6fac77c0c9b3.png)
+![](https://static.vue-js.com/d848c790-8a05-11eb-85f6-6fac77c0c9b3.png)
 
 ## 一、用途
+
 可视区域即我们浏览网页的设备肉眼可见的区域，如下图
 
- ![](https://static.vue-js.com/9c5bbb10-8a56-11eb-85f6-6fac77c0c9b3.png)
+![](https://static.vue-js.com/9c5bbb10-8a56-11eb-85f6-6fac77c0c9b3.png)
 
 在日常开发中，我们经常需要判断目标元素是否在视窗之内或者和视窗的距离小于一个值（例如 100 px），从而实现一些常用的功能，例如：
 
-- 图片的懒加载
-- 列表的无限滚动
-- 计算广告元素的曝光情况
-- 可点击链接的预加载
-
+- 图片懒加载——当图片滚动到可见时才进行加载
+- 内容无限滚动——也就是用户滚动到接近内容底部时直接加载更多，而无需用户操作翻页，给用户一种网页可以无限滚动的错觉
+- 检测广告的曝光情况——为了计算广告收益，需要知道广告元素的曝光情况
+- 在用户看见某个区域时执行任务或播放动画
 
 ## 二、实现方式
 
 判断一个元素是否在可视区域，我们常用的有三种办法：
 
 - offsetTop、scrollTop
-
 - getBoundingClientRect 
 - Intersection Observer
-
-
 
 ### offsetTop、scrollTop
 
@@ -42,23 +39,19 @@
 最后，关于`scroll`系列的属性如下：
 
 - `scrollWidth` 和 `scrollHeight` 主要用于确定元素内容的实际大小
-
 - `scrollLeft` 和 `scrollTop` 属性既可以确定元素当前滚动的状态，也可以设置元素的滚动位置
-
-- - 垂直滚动 `scrollTop > 0`
+  - 垂直滚动 `scrollTop > 0`
   - 水平滚动 `scrollLeft > 0`
-
 - 将元素的 `scrollLeft` 和 `scrollTop` 设置为 0，可以重置元素的滚动位置
 
 #### 注意
 
 - 上述属性都是只读的，每次访问都要重新开始
 
-
-
 下面再看看如何实现判断：
 
 公式如下：
+
 ```js
 el.offsetTop - document.documentElement.scrollTop <= viewPortHeight
 ```
@@ -76,7 +69,7 @@ function isInViewPortOfOne (el) {
 
 ### getBoundingClientRect 
 
-返回值是一个 `DOMRect`对象，拥有`left`, `top`, `right`, `bottom`, `x`, `y`, `width`, 和 `height`属性
+返回值是一个 `DOMRect`对象，拥有`left`, `top`, `right`, `bottom`, `x`, `y`, `width` 和 `height`属性
 
 ```js
 const target = document.querySelector('.target');
@@ -95,7 +88,7 @@ console.log(clientRect);
 
 属性对应的关系图如下所示：
 
- ![](https://static.vue-js.com/e34ac5d0-8a05-11eb-85f6-6fac77c0c9b3.png)
+![](https://static.vue-js.com/e34ac5d0-8a05-11eb-85f6-6fac77c0c9b3.png)
 
 当页面发生滚动的时候，`top`与`left`属性值都会随之改变
 
@@ -128,13 +121,9 @@ function isInViewPort(element) {
 }
 ```
 
-
-
 ### Intersection Observer
 
-`Intersection Observer` 即重叠观察者，从这个命名就可以看出它用于判断两个元素是否重叠，因为不用进行事件的监听，性能方面相比`getBoundingClientRect `会好很多
-
-
+`Intersection Observer` 即重叠观察者，从这个命名就可以看出它用于判断两个元素是否重叠，因为不用进行事件的监听，性能方面相比`getBoundingClientRect` 会好很多
 
 使用步骤主要分为两步：创建观察者和传入被观察者
 
@@ -153,7 +142,7 @@ const callback = (entries, observer) => { ....}
 const observer = new IntersectionObserver(callback, options);
 ```
 
-通过`new IntersectionObserver`创建了观察者 `observer`，传入的参数 `callback` 在重叠比例超过 `threshold` 时会被执行`
+通过 `new IntersectionObserver` 创建了观察者 `observer`，传入的参数 `callback` 在重叠比例超过 `threshold` 时会被执行`
 
 关于`callback`回调函数常用属性如下：
 
@@ -179,8 +168,6 @@ const callback = function(entries, observer) {
 const target = document.querySelector('.target');
 observer.observe(target);
 ```
-
-
 
 ### 三、案例分析
 
@@ -221,7 +208,7 @@ function createTargets() {
 }
 ```
 
-这里，首先使用`getBoundingClientRect `方法进行判断元素是否在可视区域
+这里，首先使用 `getBoundingClientRect` 方法进行判断元素是否在可视区域
 
 ```js
 function isInViewPort(element) {
@@ -234,7 +221,7 @@ function isInViewPort(element) {
 }
 ```
 
-然后开始监听`scroll`事件，判断页面上哪些元素在可视区域中，如果在可视区域中则将背景颜色设置为`yellow`
+然后开始监听 `scroll` 事件，判断页面上哪些元素在可视区域中，如果在可视区域中则将背景颜色设置为 `yellow`
 
 ```js
 $(window).on("scroll", () => {
@@ -247,9 +234,9 @@ $(window).on("scroll", () => {
 });
 ```
 
-通过上述方式，可以看到可视区域颜色会变成黄色了，但是可以明显看到有卡顿的现象，原因在于我们绑定了`scroll`事件，`scroll`事件伴随了大量的计算，会造成资源方面的浪费
+通过上述方式，可以看到可视区域颜色会变成黄色了，但是可以明显看到有卡顿的现象，原因在于我们绑定了 `scroll` 事件，`scroll`事件伴随了大量的计算，会造成资源方面的浪费
 
-下面通过`Intersection Observer`的形式同样实现相同的功能
+下面通过 `Intersection Observer` 的形式同样实现相同的功能
 
 首先创建一个观察者
 

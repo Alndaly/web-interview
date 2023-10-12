@@ -1,6 +1,6 @@
 # 面试官：说说 JavaScript 中内存泄漏的几种情况？
 
-  ![](https://static.vue-js.com/19f76b30-824d-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/19f76b30-824d-11eb-ab90-d9ae814b240d.png)
 
 ## 一、是什么
 
@@ -12,11 +12,11 @@
 
 对于持续运行的服务进程，必须及时释放不再用到的内存。否则，内存占用越来越高，轻则影响系统性能，重则导致进程崩溃
 
- ![](https://static.vue-js.com/56d4bd90-821c-11eb-ab90-d9ae814b240d.png)
+![](https://static.vue-js.com/56d4bd90-821c-11eb-ab90-d9ae814b240d.png)
 
 在`C`语言中，因为是手动管理内存，内存泄露是经常出现的事情。
 
-```clang
+```c
 char * buffer;
 buffer = (char*) malloc(42);
 
@@ -29,7 +29,6 @@ free(buffer);
 
 这很麻烦，所以大多数语言提供自动内存管理，减轻程序员的负担，这被称为"垃圾回收机制"
 
-
 ## 二、垃圾回收机制
 
 Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存
@@ -40,8 +39,6 @@ Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就
 
 - 标记清除
 - 引用计数
-
-
 
 ### 标记清除
 
@@ -58,7 +55,7 @@ Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就
 举个例子：
 
 ```js
-var m = 0,n = 19 // 把 m,n,add() 标记为进入环境。
+var m = 0, n = 19 // 把 m,n,add() 标记为进入环境。
 add(m, n) // 把 a, b, c标记为进入环境。
 console.log(n) // a,b,c标记为离开环境，等待垃圾回收。
 function add(a, b) {
@@ -67,8 +64,6 @@ function add(a, b) {
   return c
 }
 ```
-
-
 
 ### 引用计数
 
